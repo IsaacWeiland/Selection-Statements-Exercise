@@ -41,22 +41,32 @@ namespace SelectionStatementExercise
             int favNum = r.Next(1, 21);
             Console.WriteLine("Guess my favorite number.\nHint it's between 1 and 20");
             int userInput;//variable declared here so loop can read it
+            int lives = 3;
             do
             {
                 userInput = int.Parse(Console.ReadLine());
-                if (favNum < userInput)
+                if (favNum == userInput) 
+                    Console.WriteLine("You guessed correctly!");
+                else if (lives == 0)
+                {
+                    Console.WriteLine("Nevermind...");
+                    userInput = favNum;
+                }
+                else if (favNum < userInput)
                 {
                     Console.WriteLine("Your answer was too high!");
+                    lives -= 1;
+                    Console.WriteLine($"Remaining lives: {lives}");
                 }
                 else if (favNum > userInput)
                 {
                     Console.WriteLine("Your number was too low!");
+                    lives -= 1;
+                    Console.WriteLine($"Remaining lives :{lives}");
                 }
-                else
-                {
-                    Console.WriteLine("You guessed correctly!");
-                }
-            } while (favNum != userInput);//loops input until guessed correctly
+
+
+            } while (favNum != userInput);//loops input until guessed correctly or run out of lives
         }
 
         public static void SchoolSubject()
@@ -84,6 +94,7 @@ namespace SelectionStatementExercise
                     Console.WriteLine("Wow, good choice. I didn't think of that!");
                     break;
             }
+
         }
     }
 }
